@@ -1,8 +1,8 @@
 import { Body, Controller, Get, HttpStatus, Post, Put, Res, UseFilters } from '@nestjs/common';
 import { ForbiddenException } from '../common/exceptions/forbidden.exception';
+import { HttpExceptionFilter } from '../common/exceptions/http.exception-filter';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
-import { HttpExceptionFilter } from '../common/exceptions/http.exception-filter';
 
 const cats = [];
 
