@@ -1,6 +1,4 @@
-import { Module, NestModule, RequestMethod } from '@nestjs/common';
-import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
-import { AsyncLoggerMiddleware } from '../common/middlewares/async-logger.middleware';
+import { MiddlewaresConsumer, Module, NestModule } from '@nestjs/common';
 import { LoggerMiddleware } from '../common/middlewares/logger.middleware';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
@@ -19,12 +17,9 @@ import { CatsService } from './cats.service';
 export class CatsModule implements NestModule {
 
     configure(consumer: MiddlewaresConsumer): void {
-        consumer.apply([LoggerMiddleware, AsyncLoggerMiddleware])
+        consumer.apply([LoggerMiddleware])
             .with('CatsModule')
-            .forRoutes(
-            { path: '/cats', method: RequestMethod.GET },
-            { path: '/cats', method: RequestMethod.POST },
-        );
+            .forRoutes(CatsController);
     }
 
 }
